@@ -1,10 +1,10 @@
 package main
 
 type ColumnChunk struct {
-	dict IntDictionary
-	elements []int
+	Dict IntDictionary
+	Elements []int
 }
 
 func (c *ColumnChunk) GetGlobalId(i int) int {
-	return c.dict.ValueAt(c.elements[i])
+	return c.Dict.ValueAt(c.Elements[i])
 }

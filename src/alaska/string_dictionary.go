@@ -1,12 +1,12 @@
 package main
 
 type StringDictionary struct {
-	data []string
+	Data []string
 }
 
 func (d *StringDictionary) IndexOf(v string) int {
-	for i := 0; i < len(d.data); i++ {
-		if d.data[i] == v {
+	for i := 0; i < len(d.Data); i++ {
+		if d.Data[i] == v {
 			return i
 		}
 	}
@@ -14,5 +14,5 @@ func (d *StringDictionary) IndexOf(v string) int {
 }
 
 func (d *StringDictionary) ValueAt(i int) string {
-	return d.data[i]
+	return d.Data[i]
 }
