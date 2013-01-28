@@ -29,4 +29,7 @@ func main() {
 
 	chunk := ColumnChunk{intDict, []int{3,2,0,4,0,0,2,1,3,2}}
 	fmt.Printf("String ValueAt 2: %v\n", dict.ValueAt(chunk.GetGlobalId(3)))
+
+	column := StringColumn{dict, []ColumnChunk{chunk}}
+	fmt.Printf("Matching chunk locations: %s\n", column.Where("amazon"))
 }
