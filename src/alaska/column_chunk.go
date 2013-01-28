@@ -19,3 +19,11 @@ func (c *ColumnChunk) Where(globalIndex int) []int {
 	}
 	return ret
 }
+
+func (c *ColumnChunk) Select(indices []int) []int {
+	ret := make([]int, len(indices))
+	for i, idx := range indices {
+		ret[i] = c.Elements[idx]
+	}
+	return ret
+}
