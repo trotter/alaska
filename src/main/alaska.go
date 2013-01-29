@@ -23,11 +23,11 @@ func main() {
 		"voyages sncf",
 		"yellow pages",
 	}}
-	fmt.Printf("IndexOf cheap flights: %v\n", searchTermDict.IndexOf("cheap flights"))
+	fmt.Printf("IndexOf %s: %v\n", searchTerm, searchTermDict.IndexOf(searchTerm))
 	fmt.Printf("IndexOf la redoute: %v\n", searchTermDict.IndexOf("la redoute"))
 
 	intDict := alaska.IntDictionary{[]int{1,2,4,5,12}}
-	fmt.Printf("Index of 4: %v\n", intDict.IndexOf(12))
+	fmt.Printf("Index of %d: %v\n", searchTermDict.IndexOf(searchTerm), intDict.IndexOf(searchTermDict.IndexOf(searchTerm)))
 
 	chunk := alaska.ColumnChunk{intDict, []int{3,2,0,4,0,0,2,1,3,2}}
 
@@ -48,5 +48,6 @@ func main() {
 
 	table := alaska.Table{"searches", []alaska.StringColumn{column, countryColumn}}
 	ids, _ := table.Where("searchTerm", searchTerm)
+	fmt.Printf("Search term: %s\n", searchTerm)
 	fmt.Printf("Matching countries: %s\n", table.Select(ids))
 }

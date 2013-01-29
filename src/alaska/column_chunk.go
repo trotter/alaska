@@ -1,12 +1,20 @@
 package alaska
 
+import (
+	"fmt"
+)
+
 type ColumnChunk struct {
 	Dict     IntDictionary
 	Elements []int
 }
 
-func (c *ColumnChunk) GetGlobalId(i int) (int, error) {
-	return c.Dict.ValueAt(c.Elements[i])
+func (c *ColumnChunk) GetGlobalId(i int) int {
+	val, err := c.Dict.ValueAt(c.Elements[i])
+	if err != nil {
+		panic(fmt.Errorf("alaska: ColumnChunk '%v' is corrupt", c))
+	}
+	return val
 }
 
 func (c *ColumnChunk) Where(globalIndex int) []int {
@@ -23,7 +31,7 @@ func (c *ColumnChunk) Where(globalIndex int) []int {
 func (c *ColumnChunk) Select(indices []int) []int {
 	ret := make([]int, len(indices))
 	for i, idx := range indices {
-		ret[i] = c.Elements[idx]
+		ret[i] = c.GetGlobalId(idx)
 	}
 	return ret
 }

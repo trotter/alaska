@@ -9,9 +9,12 @@ type IntDictionary struct {
 }
 
 func (d *IntDictionary) IndexOf(v int) int {
-	for i := 0; i < len(d.Data); i++ {
-		if d.Data[i] == v {
-			return i
+	for low, high := 0, len(d.Data) - 1; low < high; {
+		mid := (low + high) / 2
+		switch {
+		case d.Data[mid] > v: high = mid - 1
+		case d.Data[mid] < v: low = mid + 1
+		case d.Data[mid] == v: return mid
 		}
 	}
 	return -1
