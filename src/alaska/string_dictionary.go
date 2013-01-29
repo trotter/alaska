@@ -1,6 +1,6 @@
 package alaska
 
-import(
+import (
 	"fmt"
 )
 
@@ -21,5 +21,5 @@ func (d *StringDictionary) ValueAt(i int) (string, error) {
 	if i > len(d.Data) {
 		return "", fmt.Errorf("stringDictionary: index out of bounds - i=%d,len=%d", i, len(d.Data))
 	}
-  return d.Data[i], nil
+	return d.Data[i], nil
 }

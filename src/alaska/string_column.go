@@ -1,7 +1,7 @@
 package alaska
 
 type StringColumn struct {
-	Dict StringDictionary
+	Dict   StringDictionary
 	Chunks []ColumnChunk
 }
 
@@ -21,7 +21,7 @@ func (c *StringColumn) Select(indices [][]int) [][]string {
 		globalIds := chunk.Select(indices[i])
 		ret[i] = make([]string, len(globalIds))
 		for j, id := range globalIds {
-		  ret[i][j], _ = c.Dict.ValueAt(id)
+			ret[i][j], _ = c.Dict.ValueAt(id)
 		}
 	}
 	return ret

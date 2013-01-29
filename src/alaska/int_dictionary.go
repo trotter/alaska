@@ -1,6 +1,6 @@
 package alaska
 
-import(
+import (
 	"fmt"
 )
 

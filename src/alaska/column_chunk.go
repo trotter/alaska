@@ -1,7 +1,7 @@
 package alaska
 
 type ColumnChunk struct {
-	Dict IntDictionary
+	Dict     IntDictionary
 	Elements []int
 }
 
