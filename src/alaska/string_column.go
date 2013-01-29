@@ -1,5 +1,9 @@
 package alaska
 
+import (
+	"fmt"
+)
+
 type StringColumn struct {
 	Name   string
 	Dict   StringDictionary
@@ -21,7 +25,10 @@ func (c *StringColumn) Select(indices [][]int) []string {
 	for i, chunk := range c.Chunks {
 		globalIds := chunk.Select(indices[i])
 		for _, id := range globalIds {
-			val, _ := c.Dict.ValueAt(id)
+			val, err := c.Dict.ValueAt(id)
+			if err != nil {
+				panic(fmt.Errorf("alaska: Column '%v' is corrupt", c))
+			}
 			ret = append(ret, val)
 		}
 	}

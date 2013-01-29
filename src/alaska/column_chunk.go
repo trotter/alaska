@@ -1,9 +1,5 @@
 package alaska
 
-import (
-	"fmt"
-)
-
 type ColumnChunk struct {
 	Dict     IntDictionary
 	Elements []int
