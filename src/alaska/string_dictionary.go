@@ -1,4 +1,4 @@
-package main
+package alaska
 
 type StringDictionary struct {
 	Data []string

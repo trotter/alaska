@@ -1,4 +1,4 @@
-package main
+package alaska
 
 type StringColumn struct {
 	Dict StringDictionary
