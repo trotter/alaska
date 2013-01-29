@@ -16,13 +16,13 @@ func (c *StringColumn) Where(s string) [][]int {
 	return ret
 }
 
-func (c *StringColumn) Select(indices [][]int) [][]string {
-	ret := make([][]string, len(c.Chunks))
+func (c *StringColumn) Select(indices [][]int) []string {
+	ret := []string{}
 	for i, chunk := range c.Chunks {
 		globalIds := chunk.Select(indices[i])
-		ret[i] = make([]string, len(globalIds))
-		for j, id := range globalIds {
-			ret[i][j], _ = c.Dict.ValueAt(id)
+		for _, id := range globalIds {
+			val, _ := c.Dict.ValueAt(id)
+			ret = append(ret, val)
 		}
 	}
 	return ret

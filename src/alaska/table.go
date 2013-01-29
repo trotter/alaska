@@ -9,8 +9,8 @@ type Table struct {
 	Columns []StringColumn
 }
 
-func (c *Table) Select(indices [][]int) [][][]string {
-	ret := make([][][]string, len(c.Columns))
+func (c *Table) Select(indices [][]int) [][]string {
+	ret := make([][]string, len(c.Columns))
 	for i, column := range c.Columns {
 		ret[i] = column.Select(indices)
 	}
