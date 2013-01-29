@@ -5,6 +5,10 @@ type ColumnChunk struct {
 	Elements []int
 }
 
+func (c *ColumnChunk) GetGlobalId(i int) (int, error) {
+	return c.Dict.ValueAt(c.Elements[i])
+}
+
 func (c *ColumnChunk) Where(globalIndex int) []int {
 	ret := []int{}
 	localIndex := c.Dict.IndexOf(globalIndex)
