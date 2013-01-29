@@ -5,7 +5,7 @@ type ColumnChunk struct {
 	Elements []int
 }
 
-func (c *ColumnChunk) GetGlobalId(i int) int {
+func (c *ColumnChunk) GetGlobalId(i int) (int, error) {
 	return c.Dict.ValueAt(c.Elements[i])
 }
 

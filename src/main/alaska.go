@@ -25,14 +25,11 @@ func main() {
 	}}
 	fmt.Printf("IndexOf cheap flights: %v\n", searchTermDict.IndexOf("cheap flights"))
 	fmt.Printf("IndexOf la redoute: %v\n", searchTermDict.IndexOf("la redoute"))
-	fmt.Printf("ValueAt 2: %v\n", searchTermDict.ValueAt(2))
 
 	intDict := alaska.IntDictionary{[]int{1,2,4,5,12}}
 	fmt.Printf("Index of 4: %v\n", intDict.IndexOf(12))
-	fmt.Printf("ValueAt 2: %v\n", searchTermDict.ValueAt(2))
 
 	chunk := alaska.ColumnChunk{intDict, []int{3,2,0,4,0,0,2,1,3,2}}
-	fmt.Printf("String ValueAt 2: %v\n", searchTermDict.ValueAt(chunk.GetGlobalId(3)))
 
 	column := alaska.StringColumn{searchTermDict, []alaska.ColumnChunk{chunk}}
 	fmt.Printf("Matching chunk locations: %s\n", column.Where(searchTerm))

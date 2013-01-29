@@ -1,5 +1,9 @@
 package alaska
 
+import(
+	"fmt"
+)
+
 type StringDictionary struct {
 	Data []string
 }
@@ -13,6 +17,9 @@ func (d *StringDictionary) IndexOf(v string) int {
 	return -1
 }
 
-func (d *StringDictionary) ValueAt(i int) string {
-	return d.Data[i]
+func (d *StringDictionary) ValueAt(i int) (string, error) {
+	if i > len(d.Data) {
+		return "", fmt.Errorf("stringDictionary: index out of bounds - i=%d,len=%d", i, len(d.Data))
+	}
+  return d.Data[i], nil
 }
