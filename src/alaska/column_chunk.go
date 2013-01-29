@@ -1,12 +1,12 @@
 package alaska
 
+import (
+	"fmt"
+)
+
 type ColumnChunk struct {
 	Dict     IntDictionary
 	Elements []int
-}
-
-func (c *ColumnChunk) GetGlobalId(i int) (int, error) {
-	return c.Dict.ValueAt(c.Elements[i])
 }
 
 func (c *ColumnChunk) Where(globalIndex int) []int {
