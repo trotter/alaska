@@ -1,6 +1,7 @@
 package alaska
 
 type StringColumn struct {
+	Name   string
 	Dict   StringDictionary
 	Chunks []ColumnChunk
 }

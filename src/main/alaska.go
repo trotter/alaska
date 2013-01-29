@@ -31,7 +31,7 @@ func main() {
 
 	chunk := alaska.ColumnChunk{intDict, []int{3,2,0,4,0,0,2,1,3,2}}
 
-	column := alaska.StringColumn{searchTermDict, []alaska.ColumnChunk{chunk}}
+	column := alaska.StringColumn{"searchTerm", searchTermDict, []alaska.ColumnChunk{chunk}}
 	fmt.Printf("Matching chunk locations: %s\n", column.Where(searchTerm))
 
 	countryDict := alaska.StringDictionary{[]string{
@@ -44,6 +44,9 @@ func main() {
 	}}
 	countryIntDict := alaska.IntDictionary{[]int{1,4,5}}
 	countryChunk := alaska.ColumnChunk{countryIntDict, []int{0,0,0,1,1,1,2,2,2,2}}
-	countryColumn := alaska.StringColumn{countryDict, []alaska.ColumnChunk{countryChunk}}
-	fmt.Printf("Matching countries: %s\n", countryColumn.Select(column.Where(searchTerm)))
+	countryColumn := alaska.StringColumn{"country", countryDict, []alaska.ColumnChunk{countryChunk}}
+
+	table := alaska.Table{"searches", []alaska.StringColumn{column, countryColumn}}
+	ids, _ := table.Where("searchTerm", searchTerm)
+	fmt.Printf("Matching countries: %s\n", table.Select(ids))
 }
