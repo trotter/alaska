@@ -20,10 +20,13 @@ func (c *StringColumn) Where(s string) [][]int {
 	return ret
 }
 
-func (c *StringColumn) Select(indices [][]int) []string {
+func (c *StringColumn) Select(indices [][]int) ([]string, error) {
 	ret := []string{}
 	for i, chunk := range c.Chunks {
-		globalIds := chunk.Select(indices[i])
+		globalIds, err := chunk.Select(indices[i])
+		if err != nil {
+			return []string{}, err
+		}
 		for _, id := range globalIds {
 			val, err := c.Dict.ValueAt(id)
 			if err != nil {
@@ -32,5 +35,5 @@ func (c *StringColumn) Select(indices [][]int) []string {
 			ret = append(ret, val)
 		}
 	}
-	return ret
+	return ret, nil
 }

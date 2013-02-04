@@ -7,7 +7,11 @@ import (
 func TestSelectReturnsGlobalIds(t *testing.T) {
 	chunk := GenerateColumnChunk()
 	expected := []int{5, 5, 15}
-	actual := chunk.Select([]int{0, 1, 7})
+	actual, err := chunk.Select([]int{0, 1, 7})
+
+	if err != nil {
+		t.Errorf("Select returned an error: %v", err)
+	}
 
 	if len(actual) != 3 {
 		t.Errorf("Expected length to be %v, got %v", 3, len(actual))

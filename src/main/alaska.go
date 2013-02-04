@@ -49,5 +49,6 @@ func main() {
 	table := alaska.Table{"searches", []alaska.StringColumn{column, countryColumn}}
 	ids, _ := table.Where("searchTerm", searchTerm)
 	fmt.Printf("Search term: %s\n", searchTerm)
-	fmt.Printf("Matching countries: %s\n", table.Select(ids))
+	countries, _ := table.Select(ids)
+	fmt.Printf("Matching countries: %s\n", countries)
 }

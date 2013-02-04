@@ -9,12 +9,16 @@ type Table struct {
 	Columns []StringColumn
 }
 
-func (c *Table) Select(indices [][]int) [][]string {
+func (c *Table) Select(indices [][]int) ([][]string, error) {
 	ret := make([][]string, len(c.Columns))
 	for i, column := range c.Columns {
-		ret[i] = column.Select(indices)
+		ids, err := column.Select(indices)
+		if err != nil {
+			return [][]string{}, fmt.Errorf("alaska: Invalid indices")
+		}
+		ret[i] = ids
 	}
-	return ret
+	return ret, nil
 }
 
 func (c *Table) Where(columnName string, term string) ([][]int, error) {
